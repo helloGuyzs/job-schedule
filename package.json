@@ -1,0 +1,29 @@
+{
+  "name": "distributed-job-scheduler",
+  "version": "1.0.0",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "jest --detectOpenHandles --forceExit --config jest.config.js",
+    "test:watch": "jest --watch --config jest.config.js",
+    "test:coverage": "jest --coverage --config jest.config.js"
+  },
+  "dependencies": {
+    "cluster": "^0.7.7",
+    "cron-parser": "^4.9.0",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-validator": "^7.2.1",
+    "ioredis": "^5.4.2",
+    "node-cron": "^3.0.3",
+    "uuid": "^11.0.5",
+    "winston": "^3.17.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.9",
+    "supertest": "^7.0.0",
+    "ioredis-mock": "^8.9.0"
+  }
+}
