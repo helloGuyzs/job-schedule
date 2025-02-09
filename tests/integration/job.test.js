@@ -3,11 +3,9 @@ const express = require('express');
 const { body, validationResult } = require('express-validator');
 const { v4: uuidv4 } = require('uuid');
 
-// Create Express app for testing
 const app = express();
 app.use(express.json());
 
-// Mock JobService for testing
 const mockJobService = {
     createJob: jest.fn(),
     getJob: jest.fn(),
@@ -15,7 +13,6 @@ const mockJobService = {
     rescheduleJob: jest.fn()
 };
 
-// Setup routes and controllers
 const jobController = {
     async createJob(req, res) {
         try {
@@ -96,7 +93,6 @@ describe('Distributed Job Scheduler Tests', () => {
         it('should prevent duplicate job execution', async () => {
             const jobId = uuidv4();
             
-            // Mock executeJob to return proper response objects
             mockJobService.executeJob
                 .mockResolvedValueOnce({ 
                     id: jobId,
@@ -110,7 +106,6 @@ describe('Distributed Job Scheduler Tests', () => {
                     reason: 'Job is already running' 
                 });
     
-            // Try to execute the same job multiple times
             const executionPromises = Array(3).fill().map(() => 
                 mockJobService.executeJob(jobId)
             );
@@ -199,7 +194,7 @@ describe('Distributed Job Scheduler Tests', () => {
             const processingTime = endTime - startTime;
 
             expect(responses.every(r => r.status === 200)).toBe(true);
-            expect(processingTime).toBeLessThan(5000); // Should process 100 jobs in under 5 seconds
+            expect(processingTime).toBeLessThan(5000); 
         });
     });
 });

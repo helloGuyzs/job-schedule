@@ -112,7 +112,6 @@ class RedisService {
         }
     }
 
-    // Helper method to clear all data (useful for testing)
     async clearAll() {
         try {
             await this.client.flushall();

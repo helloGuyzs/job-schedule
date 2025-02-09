@@ -1,6 +1,5 @@
 ﻿const EventEmitter = require('events');
 
-// Create a mock Redis client that extends EventEmitter
 class MockRedis extends EventEmitter {
     constructor() {
         super();
@@ -43,12 +42,10 @@ class MockRedis extends EventEmitter {
     }
 }
 
-// Mock Redis
 jest.mock('ioredis', () => {
     return jest.fn().mockImplementation(() => new MockRedis());
 });
 
-// Suppress logs during tests
 const logger = require('../src/utils/logger');
 if (logger.transports) {
     logger.transports.forEach((t) => (t.silent = true));
